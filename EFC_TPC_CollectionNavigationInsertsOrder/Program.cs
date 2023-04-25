@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace EFSampleApp;
@@ -26,7 +22,7 @@ public class Program
         using (var db = new MyContext())
         {
             // Run queries
-            var query = db.Blogs.ToList();
+            // var query = db.Blogs.ToList();
         }
         Console.WriteLine("Program finished.");
     }
@@ -44,7 +40,8 @@ public class MyContext : DbContext
         });
 
     // Declare DBSets
-    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<MartialSkill> MartialSkills { get; set; }
+    public DbSet<MartialSkill> MagicSkills { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -62,9 +59,4 @@ public class MyContext : DbContext
     {
         // Configure model
     }
-}
-
-public class Blog
-{
-    public int Id { get; set; }
 }
