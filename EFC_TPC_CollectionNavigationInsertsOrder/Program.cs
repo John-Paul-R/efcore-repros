@@ -57,6 +57,19 @@ public class MyContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Configure model
+        modelBuilder.Entity<AbstractSkill>()
+            .UseTpcMappingStrategy();
+        modelBuilder.Entity<MartialSkill>();
+        modelBuilder.Entity<MagicSkill>();
+
+        modelBuilder.Entity<Player>()
+            .HasMany(p => p.Skills)
+            .WithOne(pts => pts.Player);
+
+        modelBuilder.Entity<AbstractSkill>()
+            .HasMany<PlayerToSkill>()
+            .WithOne(pts => pts.Skill);
+
+
     }
 }
