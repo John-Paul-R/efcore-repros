@@ -14,6 +14,7 @@ public class SqliteDbContext : DbContext
         });
 
     // Declare DBSets
+    public DbSet<AbstractSkill> Skills { get; set; }
     public DbSet<MartialSkill> MartialSkills { get; set; }
     public DbSet<MagicSkill> MagicSkills { get; set; }
     public DbSet<DivineSkill> DivineSkills { get; set; }
