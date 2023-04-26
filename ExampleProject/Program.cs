@@ -29,6 +29,11 @@ public class Program
                 Name = "Combo1",
                 HasStrike = true,
             });
+            db.DivineSkills.Add(new DivineSkill
+            {
+                Name = "Smite",
+                RequiredDivinity = 3,
+            });
 
             db.SaveChanges();
 

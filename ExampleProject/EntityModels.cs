@@ -22,6 +22,11 @@ public class MagicSkill : AbstractSkill
     public string RunicName { get; set; } = null!;
 }
 
+public class DivineSkill : AbstractSkill
+{
+    public int RequiredDivinity { get; set; }
+}
+
 public class Player
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

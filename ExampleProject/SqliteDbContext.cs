@@ -16,6 +16,7 @@ public class SqliteDbContext : DbContext
     // Declare DBSets
     public DbSet<MartialSkill> MartialSkills { get; set; }
     public DbSet<MagicSkill> MagicSkills { get; set; }
+    public DbSet<DivineSkill> DivineSkills { get; set; }
     public DbSet<Player> Players { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -43,6 +44,7 @@ public class SqliteDbContext : DbContext
 
         modelBuilder.Entity<MartialSkill>();
         modelBuilder.Entity<MagicSkill>();
+        modelBuilder.Entity<DivineSkill>();
 
         modelBuilder.Entity<Player>()
             .HasMany(p => p.Skills)
