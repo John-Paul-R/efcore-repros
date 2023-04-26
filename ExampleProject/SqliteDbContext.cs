@@ -1,10 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Npgsql;
 
 namespace ExampleProject;
 
-public class NpgsqlContext : DbContext
+public class SqliteDbContext : DbContext
 {
     private static ILoggerFactory ContextLoggerFactory
         => LoggerFactory.Create(b =>
@@ -21,20 +20,13 @@ public class NpgsqlContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        var connectionString = new NpgsqlConnectionStringBuilder
-        {
-            Host = "localhost",
-            Port = 5432,
-            Database = "ExampleProject",
-            Username = "postgres",
-        }.ToString();
         // Select 1 provider
         optionsBuilder
             // .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=_ModelApp;Trusted_Connection=True;Connect Timeout=5;ConnectRetryCount=0")
-            // .UseSqlite("filename=_modelApp.db")
+            .UseSqlite("filename=_modelApp.db")
             //.UseInMemoryDatabase(databaseName: "_modelApp")
             //.UseCosmos("https://localhost:8081", @"C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==", "_ModelApp")
-            .UseNpgsql(connectionString)
+            // .UseNpgsql(connectionString)
             .EnableSensitiveDataLogging()
             .UseQueryTrackingBehavior(QueryTrackingBehavior.TrackAll)
             .UseLoggerFactory(ContextLoggerFactory);

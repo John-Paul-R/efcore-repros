@@ -10,7 +10,7 @@ public class Program
     {
         InitializeDb();
 
-        using (var db = new NpgsqlContext())
+        using (var db = new SqliteDbContext())
         {
             // Add some data to start with, verify basic saving works
 
@@ -42,7 +42,7 @@ public class Program
 #region Setup
     private static void InitializeDb()
     {
-        using var db = new NpgsqlContext();
+        using var db = new SqliteDbContext();
         // Recreate database
         db.Database.EnsureDeleted();
         db.Database.Migrate();
